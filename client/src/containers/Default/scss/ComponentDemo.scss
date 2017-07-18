@@ -1,0 +1,336 @@
+@import "../../../Common/Common";
+
+$lineColor: #f5f5f5;
+
+.defaultCss {
+  @extend .gMain;
+  padding-bottom: 50px;
+
+  .abcCss {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .attachmentInfo{
+    margin: 5px;
+    width: 100%;
+  }
+
+  .barInfo {
+    display: flex;
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    padding: 5px 10px;
+    z-index: 20;
+    border-bottom: 1px solid #e7f0f3;
+    div {
+      padding: 5px 15px;
+      border: 1px solid $lineColor;
+    }
+
+    .brandFilter {
+      padding-left: 10px;
+    }
+
+    .search {
+
+    }
+
+    .select {
+      background: #f2f2f2;
+    }
+  }
+
+  .items {
+
+    padding-top: 40px;
+
+    .item {
+      border-bottom: 10px solid $lineColor;
+
+      .title {
+        padding: 5px 10px;
+        font-size: 110%;
+        font-weight: bold;
+        color: #222;
+
+      }
+
+      .detail {
+        padding: 0px 10px;
+
+        display: flex;
+
+        .logo {
+          padding: 5px 10px 5px 0px;
+          flex: 1;
+          div {
+            @include g-Image-Center(cover);
+            height: 90px;
+            background-size: cover;
+          }
+        }
+
+        .bewrite {
+          flex: 2;
+          height: 100px;
+          line-height: 1.77;
+          overflow: hidden;
+          position: relative;
+          font-size: 105%;
+
+          .dot {
+            position: absolute;
+            background: #fff;
+            z-index: 10;
+            bottom: 0px;
+            right: 0px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  /**/
+  .categoryInfo {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    margin-top: 42px;
+    display: flex;
+    z-index: 12;
+
+    -webkit-animation: category 1s linear;
+    -o-animation: category 1s linear;
+    animation: category 1s linear;
+    //transition: 0.5s ease;
+    //transform: translate3d(0, 0, 0);
+
+    .left {
+      position: fixed;
+      width: 25%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      text-align: center;
+      height: 100%;
+      .leftRow {
+        width: 100%;
+        padding-bottom: 150px;
+
+        .select {
+          background: $lineColor;
+          border-right: #fff;
+          box-shadow: 0px 2px 3px 2px #d3d2d3;
+          transition: 0.2s ease-in;
+        }
+        div {
+          padding: 10px;
+          font-size: 14px;
+          border-bottom: 1px solid $lineColor;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+
+          &:hover {
+            background: $lineColor;
+            border-right: #fff;
+            box-shadow: 0px 2px 3px 2px #d3d2d3;
+            transition: 0.2s ease-in;
+          }
+        }
+      }
+    }
+
+    .right {
+      background: #fff;
+      flex: 1;
+      position: fixed;
+      width: 75%;
+      right: 0px;
+      height: 100%;
+      overflow: auto;
+      padding-bottom: 150px;
+      border-left: 1px solid $lineColor;
+
+      .rightDiv {
+        transition: 0.2s ease-in;
+        width: 50%;
+        float: left;
+        border-bottom: 1px solid $lineColor;
+
+        .logo {
+          @extend .gWebkitBoxCenter;
+          padding: 5px;
+          margin-bottom: 5px;
+          div {
+            height: 100px;
+            width: 100%;
+            @extend .gImageCenter;
+          }
+        }
+        .name {
+          text-align: center;
+          padding: 5px;
+        }
+
+        &:hover {
+          box-shadow: -5px 0 5px #d3d3f5, 5px 0 5px #d3d3f5, 0 -5px 5px #d3d3f5, 0 5px 5px #d3d3f5;
+        }
+      }
+    }
+  }
+
+  .searchInfo {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    position: fixed;
+    background: #fff;
+    margin-top: 41px;
+    z-index: 15;
+    box-shadow: 0px 2px 3px 2px #d3d2d3;
+
+    .search {
+      flex: 1;
+      position: relative;
+      display: flex;
+
+      input {
+        width: 100%;
+        width: 100%;
+        padding: 10px 30px;
+        border-radius: 10px;
+        border: 1px solid #dbebf7;
+      }
+
+      .searchIcon {
+        position: absolute;
+        left: 0px;
+        height: 100%;
+        @extend .gWebkitBoxCenter;
+        padding: 5px;
+        div {
+          @extend .gImageCenter;
+          background-image: url('../img/icon-search@3x.png');
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .searchDelete {
+        position: absolute;
+        right: 5px;
+        padding: 5px;
+        height: 100%;
+        @extend .gWebkitBoxCenter;
+        div {
+          @extend .gImageCenter;
+          background-image: url('../img/icon-search-del@3x.png');
+          width: 15px;
+          height: 15px;
+        }
+      }
+
+    }
+
+    .submit {
+      padding: 5px 10px;
+      @extend .gWebkitBoxCenter;
+    }
+
+    -webkit-animation: search 0.3s linear;
+    -o-animation: search 0.3s linear;
+    animation: search 0.3s linear;
+  }
+
+  .currentSelectCategory {
+    transition: 0.5s ease;
+    transform: translate3d(0, 0, 0);
+  }
+  .currentSelectSearch {
+    //transition: 0.5s ease 0.1s;
+    //transform: translate3d(0,150%,0);
+  }
+
+  .demoItem {
+
+    display: flex;
+    border: 1px solid #eeeeee;
+    border-left: none;
+    .demoImg {
+      flex: 1;
+      padding: 10px;
+      background: #fff;
+      border-left: 1px solid #eeeeee;
+      //display: flex;
+      .icon {
+        padding: 5px;
+        margin: 5px;
+        @extend .gImageCenter;
+        height: 32px;
+      }
+
+      .text {
+        margin-top: 8px;
+        text-align: center;
+      }
+      .no1 {
+        border-left: none;
+        background-image: url('../img/ico1.png');
+      }
+      .no2 {
+        background-image: url('../img/ico2.png');
+      }
+      .no3 {
+        background-image: url('../img/ico3.png');
+      }
+      .no4 {
+        background-image: url('../img/ico4.png');
+      }
+
+    }
+  }
+
+  .dateTime {
+    padding-top: 250px;
+  }
+}
+
+@keyframes search {
+  from {
+    margin-top: -42px;
+  }
+  to {
+    margin-top: 42px;
+  }
+}
+
+@-o-keyframes category {
+  from {
+    margin-top: -200%;
+  }
+  to {
+    margin-top: 42px
+  }
+}
+
+@-webkit-keyframes category {
+  from {
+    margin-top: -200%;
+  }
+  to {
+    margin-top: 42px
+  }
+}
+
+@keyframes category {
+  from {
+    margin-top: -200%;
+  }
+  to {
+    margin-top: 42px
+  }
+}

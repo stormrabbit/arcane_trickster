@@ -1,0 +1,138 @@
+@import "../../../Common/Common";
+
+.navBarCss {
+  width: 100%;
+  height: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #00a2d5;
+  z-index: 99999;
+
+  .imgCenter {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .subContent {
+    //padding: 5px;
+    display: flex;
+    width: 100%;
+
+    .left {
+      padding: 10px 10px 10px 5px;
+
+      div {
+        background-image: url('../img/icon-return@3x.png');
+        width: 15px;
+        height: 20px;
+        opacity: 1;
+      }
+
+      .undisplay {
+        opacity: 0;
+      }
+    }
+
+    .center {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      flex: 1;
+
+      div {
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        height: 100%;
+        text-align: center;
+        line-height: 40px;
+      }
+    }
+
+    .right {
+      min-width: 40px;
+      padding: 5px 0;
+
+      .defaultIcon {
+        @extend .gWebkitBoxCenter;
+
+        div {
+          @include g-Image-Center-Url($url: '../img/icon-more@3x.png');
+          width: 20px;
+          height: 30px;
+        }
+      }
+
+      .nbButton {
+        @extend .gWebkitBoxCenter;
+        overflow: hidden;
+        white-space: nowrap;
+        height: 100%;
+        padding: 5px;
+      }
+
+      .nbIcon {
+        @extend .gWebkitBoxCenter;
+
+        div {
+          @extend .gImageCenter;
+          width: 20px;
+          height: 30px;
+        }
+      }
+
+      .nbMenuInfo1 {
+        @extend .gWebkitBoxCenter;
+
+        div {
+          @include g-Image-Center-Url($url: '../img/icon-more@3x.png');
+          width: 20px;
+          height: 30px;
+        }
+      }
+    }
+  }
+
+  .nbMenuInfo {
+    //display: flex;
+    //flex-direction: row-reverse;
+    /*position: absolute;
+    right: 0px;*/
+    display: none;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+
+    .nbContent {
+      position: absolute;
+      right: 0;
+
+      .nbMenuItem {
+        padding: 5px 10px 5px 5px;
+        background: #fff;
+
+        .nbItem {
+          padding: 10px;
+          font-size: 16px;
+        }
+      }
+    }
+
+    &.showMenu {
+      display: block;
+    }
+  }
+
+  .isWeiXin1 {
+    display: none;
+  }
+}
+
+.isWeiXin {
+  height: 0;
+  width: 0;
+}
