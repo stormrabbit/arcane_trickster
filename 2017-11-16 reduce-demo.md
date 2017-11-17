@@ -1,6 +1,6 @@
 # 使用 reduce 对数组进行递归调用
 
-dva 中有这么一类代码：
+dva 在注入 model 之前做了这么一个动作：
 
 ```
 function prefix(obj, namespace, type) {
@@ -15,9 +15,28 @@ function prefix(obj, namespace, type) {
   }, {});
 }
 
+export default function prefixNamespace(model) {
+  const {
+    namespace,
+    reducers,
+    effects,
+  } = model;
+
+  if (reducers) {
+    if (isArray(reducers)) {
+      model.reducers[0] = prefix(reducers[0], namespace, 'reducer');
+    } else {
+      model.reducers = prefix(reducers, namespace, 'reducer');
+    }
+  }
+  if (effects) {
+    model.effects = prefix(effects, namespace, 'effect');
+  }
+  return model;
+}
 ```
 
-一开始对 reduce 方法完全不理解，总觉得用起来怪怪的。
+一开始对 reduce 方法完全不理解，这一段直接看蒙了。
 
 首先说，能用 reduce 方法写的逻辑一定能用 map 或 every 方法重写，这是毫无争议的。唯一的区别就是单循环把起始变量定义在了数组外，而 reduce 把其实变量的作用域搁在了数组里。就作用域和闭包而言，后者可能更优秀。
 
@@ -47,6 +66,6 @@ reduce 函数的逻辑比较符合递归的思路，因为每个 preValue 都是
 return arr.reduce((pre, cur) => pre * cur, 1);
 ```
 
-回到开头的代码，主要逻辑就是拿到 model 里的 reducer 和 effects，转换成了 namespace/effect 或者 namespace/reducer 的键值对保存在对象里。这样在 dispatch({type: 'namespace/reduce', payload}) 的时候，model 里的 effects 就接到了 action 来执行后面的逻辑。
+回到开头的代码，主要逻辑就是拿到 model 里的 reducer 和 effects，转换成了 namespace/effect 或者 namespace/reducer 的键值对保存在对象里。这样在 dispatch({type: 'namespace/reduce', payload}) 的时候，model 里的 effects 就接到了 action 来执行后面的逻辑。reduce 起了一个对象转对象的功能。
 
-
+其实对象转对象、数组转数组、对象数组互转，用 reduce 来处理是非常方便的。
