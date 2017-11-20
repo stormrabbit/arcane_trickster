@@ -54,6 +54,7 @@ package.json 里 script 是这么写的：
 # 寻找 “dva”
 
 在 `index.js` 里，dva 一共做了这么几件事：
+
 0. 从 'dva' 依赖中引入 dva ：import dva from 'dva'; 
 1. 通过函数生成一个 app 对象：const app = dva(); 
 2. 加载插件：app.use({});
@@ -77,7 +78,7 @@ exports.default = require('./lib');
 exports.connect = require('react-redux').connect;
 ```
 
-显然这个 `exports.default` 就是我们要找的 dva，但是 dva 的源码中没有 `./lib` 文件夹。这个时候还是只能依循惯例，一般都是 src 文件夹下的 es6 的文件用编译出 es5 的文件到 lib 文件夹下(babel 的命令是 `babel src -d libs`)，所以导出的东西应该在 `src/index.js` 文件中。
+显然这个 `exports.default` 就是我们要找的 dva，但是源码中没有 `./lib` 文件夹。还是只能依循惯例，一般都是使用 babel 的命令是 `babel src -d libs` 进行编译，所以导出的东西应该在 `src/index.js` 文件中。
 
 ```
 //src/index.js
