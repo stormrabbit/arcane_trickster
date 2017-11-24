@@ -113,6 +113,10 @@ dispatch = action => store.dispatch(action);
 
  comp(store.dispath) = action => (action => store.dispath)
 
+ 令 dispatch = action => (action => store.dispatch(action))
+
+ dispatch(action) => action=> store.dispatch(action)
+
 (...args) =>( action => (action => ...args(action)) )
 
 令 temp = (...args) =>( action => b(...args)(action);
